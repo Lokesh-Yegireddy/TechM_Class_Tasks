@@ -15,7 +15,6 @@ owner.AddFood();
 
 Customer customer=new Customer("Anusha",owner);
 System.out.println("Customer Placing Order...");
-
 customer.PlaceOrder();
 System.out.println("Customer Changing The Order");
 customer.RemoveOrder();
