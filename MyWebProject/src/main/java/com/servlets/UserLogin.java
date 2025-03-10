@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -28,7 +30,7 @@ public class UserLogin extends HttpServlet {
 		PrintWriter pw=response.getWriter();
 		response.setContentType("text/html");
 		String email=(String)request.getParameter("email");
-		String password=(String)request.getParameter("pass");
+		String password=(String)request.getParameter("password");
 		try{
 			Connection con=DbConnection.DbConnect();
 			String query="select * from Users where email=? and password=?";
@@ -36,9 +38,12 @@ public class UserLogin extends HttpServlet {
 			smt.setString(1, email);
 			smt.setString(2, password);
 			ResultSet res=smt.executeQuery();
-			String name=request.getParameter("username");
+			HttpSession hs=request.getSession();
+			
 			if(res.next())
 			{   
+				  String name = res.getString("name");
+		         hs.setAttribute("username", name);
 				pw.print("<h1 style='color:green' >Login Successfull</h1>");
 				RequestDispatcher rd=request.getRequestDispatcher("profile.jsp");
 				rd.include(request, response);

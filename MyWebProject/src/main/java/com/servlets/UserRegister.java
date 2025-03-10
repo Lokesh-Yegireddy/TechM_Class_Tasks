@@ -29,18 +29,20 @@ public class UserRegister extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw=response.getWriter();
 		response.setContentType("text/html");
-		String firstName=request.getParameter("fname");
-		String secondName=request.getParameter("sname");
+		String name=request.getParameter("name");
 		String email=(String)request.getParameter("email");
 		String password=(String)request.getParameter("password");
+		String mobile=(String)request.getParameter("mobile");
+		String gender=(String)request.getParameter("gender");
 		try {
 			Connection con=DbConnection.DbConnect();
-			 String query="insert into Users values(?,?,?,?)";
+			 String query="insert into Users values(?,?,?,?,?)";
 			 PreparedStatement smt=con.prepareStatement(query);
-			 smt.setString(1,firstName);
-			 smt.setString(2,secondName);
-			 smt.setString(3, email);
-			 smt.setString(4, password);
+			 smt.setString(1,name);
+			 smt.setString(2, email);
+			 smt.setString(3, password);
+			 smt.setString(4, mobile);
+			 smt.setString(5, gender);
 			 int res=smt.executeUpdate();
 			 if(res>0)
 			 {  
@@ -48,7 +50,7 @@ public class UserRegister extends HttpServlet {
 				RequestDispatcher rd=request.getRequestDispatcher("login.html");
 				rd.include(request, response);
 			 }else {
-				pw.print("Not Registered");
+				pw.print("Registarion Failed...!");
 			 }
 				 
 			 

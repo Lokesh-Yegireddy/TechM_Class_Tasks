@@ -28,11 +28,11 @@ public class DeleteData extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             PrintWriter pw=response.getWriter();
             response.setContentType("text/html");
-            
+            String name=(String)request.getParameter("username");
             try {
             	Connection con=DbConnection.DbConnect();
-            	String name=request.getParameter("username");
-            	String query="delete from Users where fname=?";
+            	
+            	String query="delete from Users where name=?";
             	PreparedStatement smt=con.prepareStatement(query);
             	smt.setString(1,name);
             	int res=smt.executeUpdate();
