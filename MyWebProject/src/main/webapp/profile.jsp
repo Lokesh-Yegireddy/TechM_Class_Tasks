@@ -7,6 +7,7 @@
 <title>Profile Page</title>
 </head>
 <body>
-<h1>This Is Profile Page</h1>
+<h1>Welcome</h1>
+<a href="index.html">Logout</a>
 </body>
 </html>

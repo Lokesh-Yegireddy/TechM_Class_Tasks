@@ -36,7 +36,7 @@ public class UserLogin extends HttpServlet {
 			smt.setString(1, email);
 			smt.setString(2, password);
 			ResultSet res=smt.executeQuery();
-			
+			String name=request.getParameter("username");
 			if(res.next())
 			{   
 				pw.print("<h1 style='color:green' >Login Successfull</h1>");
