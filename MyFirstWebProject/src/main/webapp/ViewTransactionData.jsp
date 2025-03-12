@@ -59,8 +59,8 @@
         } 
     %>
 </div>
-
-<a href="profile.jsp?username=<%=name %>">Go Profile Page</a>
+<%session.setAttribute("cPage",currentPage); %>
+<a href="profile.jsp">Go Profile Page</a>
 
 </body>
 </html>

@@ -42,10 +42,20 @@ public class UserLogin extends HttpServlet {
 			
 			if(res.next())
 			{   
-				  String name = res.getString("name");
-		         hs.setAttribute("username", name);
+				String uName = res.getString("name"); 
+		        String uEmail =res.getString("email");
+		        String uPassword =res.getString("password");
+		        String uMobile =res.getString("mobile");
+		        String uGender =res.getString("gender");
+		        //session data
+		        hs.setAttribute("userName", uName);
+				hs.setAttribute("userEmail",uEmail);
+				hs.setAttribute("userPassword",uPassword);
+				hs.setAttribute("userMobile",uMobile);
+				hs.setAttribute("userGender",uGender);
 				pw.print("<h1 style='color:green' >Login Successfull</h1>");
 				RequestDispatcher rd=request.getRequestDispatcher("profile.jsp");
+		
 				rd.include(request, response);
 			}else
 			{

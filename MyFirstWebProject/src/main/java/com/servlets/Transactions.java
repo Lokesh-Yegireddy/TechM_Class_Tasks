@@ -42,7 +42,10 @@ public class Transactions extends HttpServlet {
 			if (request.getParameter("page") != null) {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
-
+            if(request.getParameter("currentPage")!=null)
+            {
+            	page = Integer.parseInt(request.getParameter("currentPage"));
+            }
 			int offSet = (page - 1) * transactionsPerPage;
 
 			String query1 = "select count(*) from transactions";

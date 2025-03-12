@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -27,6 +29,7 @@ public class UserRegister extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession hs=request.getSession();
 		PrintWriter pw=response.getWriter();
 		response.setContentType("text/html");
 		String name=request.getParameter("name");
@@ -34,6 +37,12 @@ public class UserRegister extends HttpServlet {
 		String password=(String)request.getParameter("password");
 		String mobile=(String)request.getParameter("mobile");
 		String gender=(String)request.getParameter("gender");
+//		/// Session Data
+//		hs.setAttribute("userName",name);
+//		hs.setAttribute("userEmail",email);
+//		hs.setAttribute("userPassword",password);
+//		hs.setAttribute("userMobile",mobile);
+//		hs.setAttribute("userGender",gender);
 		try {
 			Connection con=DbConnection.DbConnect();
 			 String query="insert into Users values(?,?,?,?,?)";
